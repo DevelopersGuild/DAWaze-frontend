@@ -21,7 +21,10 @@ var env = new nunjucks.Environment(new nunjucks.FileSystemLoader('views'),
 env.express(app);
 
 // Tell Express to serve static objects from the /public/ directory
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
+
+// routing
+require('./routes/main')(app);
 
 // Handle 404 Error
 app.use(function(req, res, next) {

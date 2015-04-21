@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% if title %}{{ title }} :: {% endif %}Developers' Guild Forums</title>
+
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/semantic.css" type="text/css">
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
+  </head>
+
+  <body>
+    <div class="wrapper">
+        <div id='mapbox-container'>
+            <h2 class="ui center aligned icon header">
+              <i class="fa fa-map-marker fa-2x"></i>
+              <div class="content">
+                Mapbox Demo
+                <div class="sub header">Basic setup.</div>
+              </div>
+            </h2>
+            <div id='map'></div>
+        </div>
+    </div>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/semantic.js"></script>
+    <script src="../js/scripts.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+  </body>
+</html>
