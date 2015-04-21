@@ -14,16 +14,32 @@
 - HTML templates go in the "views" folder
 - Untemplated HTML files go in the "wip-views" folder
 - CSS, Non-Node JS, and IMG files go in the "public" folder in their respective folders
+- Avoid pushing directly to master; instead, work on branches and make pull requests!
 
 **Node Packages Used**
 
 - Async
-- Body-Parser
-- Cookie-Parser
-- Express
-- Nunjucks
-- Request
-- Validator
+- Body-Parser - Parse body elements in POST requests
+- Cookie-Parser - Handle cookies
+- Express - Node Framework
+- Nunjucks - Render HTML templates
+- Request - Make calls to Backend API
+- Validator - Validate user input
+
+**Handy Git Commands**
+
+- *git clone [remote repo]* - Get the project repo for the first time
+- *git pull origin [branch name]* - Update a branch
+- *git status* - Show the files that you have changed.
+- *git add --all* - Stage all the files that you have changed for a commit
+- *git commit -m [commit message]* - Commit your staged files to your local repo
+- *git push origin [branch name]* - Push your local commits from your branch to the remote repo
+- *git stash* - Stash your changed files
+- *git stash apply* - Apply your stash
+- *git branch [branch name]* - Create and checkout a new branch
+- *git checkout [branch name]* - Checkout a branch
+- *git merge master* - Merge your current branch with master
+- *git rebase master* - Rebase your current branch on top of master
 
 **Coding Style**
 
