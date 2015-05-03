@@ -13,6 +13,13 @@
 	height: 100%;
 }
 
+.fixed-action-btn{
+	position: absolute;
+	top: 50%;
+	right: 3em;
+	max-width: 3em;
+}
+
 /* sidebar */
 @media only screen and (max-width: @computerBreakpoint) {
   html.ios {
