@@ -1,5 +1,21 @@
+@font-face{
+	font-family: ephesus;
+	src: url(../fonts/ephesus-demo-extrabold.otf);
+}
+
+.daze-img{
+	margin: 0.3em;
+}
+
+#daze-header{
+	font-family: ephesus;
+	text-transform: capitalize;
+	font-size: 2em;
+	line-height: 1.2em;
+}
+
 .wrapper{
-	margin: 3%;
+	margin: 2%;
 }
 
 #mapbox-container{
