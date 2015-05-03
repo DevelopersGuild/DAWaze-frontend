@@ -7,7 +7,7 @@ $(function(){
 	    bounds = L.latLngBounds(southWest, northEast);
 
 
-	var map = L.mapbox.map('map', 'sos0.lpj92h0n', {
+	var map = L.mapbox.map('map', 'sos0.m3557bk6', {
 	    // set that bounding box as maxBounds to restrict moving the map
 	    // see full maxBounds documentation:
 	    // http://leafletjs.com/reference.html#map-maxbounds
