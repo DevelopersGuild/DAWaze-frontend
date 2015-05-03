@@ -1,3 +1,4 @@
+// mapbox-related code
 $(function(){
 	// Provide your access token
 	L.mapbox.accessToken = 'pk.eyJ1Ijoic29zMCIsImEiOiJ3aTZKTVlFIn0.I9-1qEB9QZfY_FZPoEzHzQ';
@@ -18,4 +19,8 @@ $(function(){
 
 	// zoom the map to that bounding box
 	map.fitBounds(bounds);
-})
+
+	$('#feed-menu').sidebar('attach events', '#feed-btn', 'toggle');
+	$('#add-menu').sidebar('attach events', '#add-btn', 'toggle');
+});
+
