@@ -15,8 +15,8 @@ $(function(){
 	    // see full maxBounds documentation:
 	    // http://leafletjs.com/reference.html#map-maxbounds
 	    maxBounds: bounds,
-	    maxZoom: 19,
-	    minZoom: 15
+	    maxZoom: 20,
+	    minZoom: 16
 	});
 
 	// zoom the map to that bounding box
@@ -36,5 +36,30 @@ $(function(){
 	$('.second.modal').modal('attach events', '.first.modal .button');
 	// show first immediately
 	$('.first.modal').modal('attach events', '#login-btn', 'show');
+
+	var color = '#' + [
+        (~~(Math.random() * 16)).toString(16),
+        (~~(Math.random() * 16)).toString(16),
+        (~~(Math.random() * 16)).toString(16)].join('');
+	var marker = L.marker([37.31850, -122.04450], {
+	    icon: L.mapbox.marker.icon({
+	      'marker-color': '#f86767'
+	    }),
+	    draggable: true
+	});
+	$('#live-btn').click(function(){
+		marker.addTo(map);
+		console.log("add marker")
+	})
+
+	marker.on('dragend', ondragend);
+
+	// Set the initial marker coordinate on load.
+	ondragend();
+
+	function ondragend() {
+	    var m = marker.getLatLng();
+	    console.log('Latitude: ' + m.lat + ', Longitude: ' + m.lng);
+	}
 });
 
