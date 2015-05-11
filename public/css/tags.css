@@ -1,0 +1,49 @@
+.daze-tag
+{
+	background-image: url("../images/tags.png");
+	background-size: cover;
+	background-position-y: 50%;
+}
+.daze-tag div
+{
+
+	padding-top: 100%;
+}
+.text-only
+{
+	background-image: url("../images/tags-text.png");
+}
+ 
+
+.wtf
+{
+	background-position-x: 0%;
+}
+.hangout
+{
+	background-position-x: 14.275%;
+}
+.cop
+{
+	background-position-x: 28.55%;
+}
+.cool
+{
+	background-position-x: 42.87%;
+}
+.club
+{
+	background-position-x: 57.15%;
+}
+.music
+{
+	background-position-x: 71.4%;
+}
+.study
+{
+	background-position-x: 85.7%;
+}
+.event
+{
+	background-position-x: 100%;
+}
