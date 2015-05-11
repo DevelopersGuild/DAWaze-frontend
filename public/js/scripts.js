@@ -1,4 +1,7 @@
 $(function(){
+	var socket = io();
+	socket.emit('onlineUsers', 1)
+
 	/*
 		mapbox-related code
 	*/
@@ -49,7 +52,8 @@ $(function(){
 	});
 	$('#live-btn').click(function(){
 		marker.addTo(map);
-		console.log("add marker")
+		socket.emit('marker', 'marker');
+		console.log("add marker");
 	})
 
 	marker.on('dragend', ondragend);
