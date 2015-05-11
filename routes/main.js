@@ -13,5 +13,10 @@ module.exports = function(app) {
     res.render('index.html', {title: 'Welcome to Daze.'});
   };
 
+  var renderSplash = function(req, res){
+    res.render('splash.html', {title: 'Welcome to Daze.'});
+  };
+
   app.get('/', renderTemplate);
+  app.get('/splash', renderSplash);
 };
