@@ -4,13 +4,25 @@
     <meta charset="utf-8">
     <title>{% if title %}{{ title }} :: {% endif %}Developers' Guild</title>
 
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
 </head>
 
 <body>
+  <header>
+    <div class="ui menu">
+      <a class="item" id="feed-btn">
+        <i class="fa fa-list"></i>
+      </a>
+      <div class="right text icon menu">
+        <a class="item" id="live-btn">
+          <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
+  </header>
     <div class="ui right vertical labeled icon sidebar menu" id="feed-menu">
         <a class="item">
             <i class="fa fa-home"></i>
@@ -95,19 +107,8 @@
         </div>
       </div>
     <div class="wrapper">
-      <h2 class="ui center aligned icon header" id="daze-header">
-          <img class="daze-img" src="../images/daze.png">
-          <div class="content">
-              <div id="daze-title-text">daze</div>
-              <div class="sub header">Basic mock-up.</div>
-          </div>
-      </h2>
       <div id='mapbox-container'>
           <div id='map'></div>
-      </div>
-      <div class="fixed-action-btn">
-          <div class="circular ui blue icon massive button" style="margin-bottom: 1em;" id="live-btn"><i class="fa fa-plus"></i></div>
-          <div class="circular ui purple icon massive button" style="margin-bottom: 1em;" id="feed-btn"><i class="fa fa-bars"></i></div>
       </div>
     </div>
     <script src="../js/jquery-1.10.2.min.js"></script>
