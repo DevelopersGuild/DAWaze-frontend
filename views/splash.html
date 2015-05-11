@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if title %}{{ title }} :: {% endif %}Developers' Guild</title>
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/semantic.min.css" type="text/css">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
 </head>
 
 <body>
@@ -18,14 +18,45 @@
       <div style="font-size:26px; margin-top:5px;"><span>The social app</span></br><span>for De Anza College</span></div>
       <div style="line-height:30px; margin-top:16px; color:#FFFFFF; letter-spacing:6px;">
         <a href="#" style="color:#FFFFFF;"><div style="display:inline-block; border-radius:30px; height:30px; width:100px; border:1px solid white; padding-left:6px;">ENTER</div></a>
-        <a href="#"><div style="border-radius:30px; height:30px; width:100px; border:1px solid black; padding-left:6px; margin:0 auto; color:#000000; margin-top:16px;">LOGIN</div></a>
+        <a href="#" id="login-btn"><div style="border-radius:30px; height:30px; width:100px; border:1px solid black; padding-left:6px; margin:0 auto; color:#000000; margin-top:16px;">LOGIN</div></a>
         <a href="#"><div style="border-radius:30px; height:30px; width:100px; border:1px solid black; padding-left:6px; margin:0 auto; margin-top:16px; color:#000000">JOIN</div></a>
       </div>
     </div>
+
+    <div class="ui basic modal">
+      <i class="close icon"></i>
+      <div class="header">
+        Login 
+      </div>
+      <div class="content">
+        <div class="ui form">
+          <div class="field">
+              <label style="color:white;">Username</label>
+              <input type="text">
+            </div>
+            <div class="field">
+              <label style="color:white;">Password</label>
+              <input type="password">
+            </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="two fluid ui inverted buttons">
+          <div class="ui green basic inverted button" style="width:100%;">
+            <i class="checkmark icon"></i>
+            Login
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <script src="../js/jquery-1.10.2.min.js"></script>
     <script src="../js/semantic.min.js"></script>
     <script src="../js/scripts.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
+    <script type="text/javascript">
+      $('.modal').modal('attach events', '#login-btn', 'show');
+    </script>
 </body>
 </html>

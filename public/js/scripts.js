@@ -35,6 +35,11 @@ $(function(){
 	// open second modal on button click
 	$('.second.modal').modal('attach events', '.first.modal .button');
 	// show first immediately
-	$('.first.modal').modal('attach events', '#login-btn', 'show');
+	// $('.first.modal').modal('attach events', '#login-btn', 'show');
+
+  $('#signup').modal('attach events', '#signup-btn', 'show');
+  $('#login').modal('attach events', '#login-btn', 'show');
+  $('#splash').modal('show');
+
 });
 
