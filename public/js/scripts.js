@@ -44,10 +44,14 @@ $(function(){
         (~~(Math.random() * 16)).toString(16),
         (~~(Math.random() * 16)).toString(16),
         (~~(Math.random() * 16)).toString(16)].join('');
+
 	var marker = L.marker([37.31850, -122.04450], {
-	    icon: L.mapbox.marker.icon({
-	      'marker-color': '#f86767'
-	    }),
+	    icon: L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag event', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}),
 	    draggable: true
 	});
 	$('#live-btn').click(function(){
@@ -55,6 +59,7 @@ $(function(){
 		socket.emit('marker', 'marker');
 		console.log("add marker");
 	})
+
 
 	marker.on('dragend', ondragend);
 
@@ -65,5 +70,84 @@ $(function(){
 	    var m = marker.getLatLng();
 	    console.log('Latitude: ' + m.lat + ', Longitude: ' + m.lng);
 	}
+
+	//marker changer
+	$('#dt-wtf').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag wtf', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to WTF")
+	})
+	$('#dt-hangout').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag hangout', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Hangout")
+	})
+	$('#dt-cop').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag cop', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Cop")
+	})
+	$('#dt-cool').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag cool', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Cool")
+	})
+	$('#dt-club').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag club', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Club")
+	})
+	$('#dt-music').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag music', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Music")
+	})
+	$('#dt-study').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag study', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Study")
+	})
+	$('#dt-event').click(function(){
+		marker.setIcon(L.divIcon({
+		  // Specify a class name we can refer to in CSS.
+		  className: 'daze-tag event', 
+		  // Set marker width and height
+		  iconSize: [60, 60]
+		}) );
+		console.log("Marker set to Event")
+	})	
+
+  $('#signup').modal('attach events', '#signup-btn', 'show');
+  $('#login').modal('attach events', '#login-btn', 'show');
+  $('#splash').modal('show');
+
 });
 
