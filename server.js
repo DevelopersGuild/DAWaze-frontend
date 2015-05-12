@@ -10,6 +10,9 @@ var path          = require('path');
 
 // Use middleware
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -26,7 +29,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(favicon(__dirname + '/public/images/favicon.ico')); 
 
 // routing
-require('./routes/main')(app);
+require('./routes/main')(app, io);
 
 // Handle 404 Error
 app.use(function(req, res, next) {
@@ -34,7 +37,7 @@ app.use(function(req, res, next) {
 });
 
 
-var server = app.listen(SERVER_PORT, SERVER_ADDRESS, function () {
+server.listen(SERVER_PORT, SERVER_ADDRESS, function () {
 
   var host = server.address().address;
   var port = server.address().port;
