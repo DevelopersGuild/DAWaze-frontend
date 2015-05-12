@@ -144,5 +144,10 @@ $(function(){
 		}) );
 		console.log("Marker set to Event")
 	})	
+
+  $('#signup').modal('attach events', '#signup-btn', 'show');
+  $('#login').modal('attach events', '#login-btn', 'show');
+  $('#splash').modal('show');
+
 });
 
