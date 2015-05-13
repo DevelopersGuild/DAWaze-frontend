@@ -12,7 +12,6 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	background-size: auto 25px;
-	<!--background-color: #57115F;-->
 }
 
 #daze-title-text{
@@ -129,4 +128,73 @@ input {
 }
 :-ms-input-placeholder { /* Internet Explorer 10+ */
   color: #000000;
+}
+
+/*
+SPLASH SCREEN
+*/
+
+.splash {
+	background: #630023; 
+	height:100%; 
+	width:100%; 
+	font-family:'Open Sans'; 
+	font-weight:100; 
+	text-align:center;
+}
+
+.splash .logo img {
+	display:block; 
+	margin: 0 auto; 
+	height:auto; 
+	width:auto; 
+	max-height: 200px; 
+	padding-top:100px;
+}
+
+.splash .logo h1 {
+	text-align:center; 
+	font-family: ephesus;
+	color: #FFFFFF; 
+	font-size:50px; 
+}
+
+.splash .tagline {
+	font-size:26px; 
+	margin-top:5px;
+	color: white;
+}
+
+.splash .btn-menu {
+	line-height:30px; 
+	margin-top:16px; 
+	color:#FFFFFF; 
+	letter-spacing:6px;
+}
+
+.splash .btn {
+	display:inline-block; 
+	border-radius:30px; 
+	height:30px; 
+	width:100px; 
+	border:1px 
+	solid white; 
+	padding-left:6px;
+	color: white;
+}
+
+.splash .btn .secondary {
+	margin-top: 16px;
+}
+
+.login label {
+	color: white !important;
+}
+
+.login input {
+	border: 1px solid white !important;
+}
+
+.login .button {
+	width: 100% !important;
 }

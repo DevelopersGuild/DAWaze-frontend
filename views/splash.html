@@ -12,38 +12,40 @@
 </head>
 
 <body>
-    <div style="background: #82394F; height:100%; width:100%; font-family:'Open Sans'; font-weight:100; text-align:center;">
-      <img src="/images/daze-white_1024.png" style="display:block; margin: 0 auto; height:auto; width:auto; max-height: 200px; padding-top:100px;">
-      <div style="text-align:center; font-family:'Lato'; color: #FFFFFF; font-size:14px; letter-spacing:20px; margin-top:25px; margin-left:20px;">DAWAZE</div>
-      <div style="font-size:26px; margin-top:5px;"><span>The social app</span></br><span>for De Anza College</span></div>
-      <div style="line-height:30px; margin-top:16px; color:#FFFFFF; letter-spacing:6px;">
-        <a href="#" style="color:#FFFFFF;"><div style="display:inline-block; border-radius:30px; height:30px; width:100px; border:1px solid white; padding-left:6px;">ENTER</div></a>
-        <a href="#" id="login-btn"><div style="border-radius:30px; height:30px; width:100px; border:1px solid black; padding-left:6px; margin:0 auto; color:#000000; margin-top:16px;">LOGIN</div></a>
-        <a href="#"><div style="border-radius:30px; height:30px; width:100px; border:1px solid black; padding-left:6px; margin:0 auto; margin-top:16px; color:#000000">JOIN</div></a>
+    <div class="splash">
+      <div class="logo">
+        <img src="/images/daze-white_1024.png">
+        <h1>DAZE</h1>
+      </div>
+      <div class="tagline">Campus Community App</br>for De Anza College</div>
+      <div class="btn-menu">
+        <a href="home" class="btn">ENTER</a>
+        <a href="#" id="login-btn" class="btn secondary">LOGIN</a>
+        <a href="#" class="btn secondary">JOIN</a>
       </div>
     </div>
 
-    <div class="ui basic modal">
-      <i class="close icon"></i>
+    <div class="ui basic modal login">
+      <i class="close fa fa-close"></i>
       <div class="header">
         Login 
       </div>
       <div class="content">
         <div class="ui form">
           <div class="field">
-              <label style="color:white;">Username</label>
+              <label>Username</label>
               <input type="text">
             </div>
             <div class="field">
-              <label style="color:white;">Password</label>
+              <label>Password</label>
               <input type="password">
             </div>
         </div>
       </div>
       <div class="actions">
         <div class="two fluid ui inverted buttons">
-          <div class="ui green basic inverted button" style="width:100%;">
-            <i class="checkmark icon"></i>
+          <div class="ui green basic inverted button">
+            <i class="fa fa-lock"></i>
             Login
           </div>
         </div>

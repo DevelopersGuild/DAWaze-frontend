@@ -4,7 +4,11 @@ module.exports = function(app, io) {
     var https = require('https');
 
     var renderTemplate = function(req, res){
-        res.render('index.html', {title: 'Welcome to Daze.'});
+        res.render('splash.html', {title: 'Welcome to Daze.'});
+    };
+
+    var home = function(req, res){
+        res.render('index.html', {title: 'Daze'});
     };
 
     io.on('connection', function(socket){
@@ -22,4 +26,5 @@ module.exports = function(app, io) {
     })
 
     app.get('/', renderTemplate);
+    app.get('/home', home);
 };
