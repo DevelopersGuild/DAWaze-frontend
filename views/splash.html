@@ -21,7 +21,7 @@
       <div class="btn-menu">
         <a href="home" class="btn">ENTER</a>
         <a href="#" id="login-btn" class="btn secondary">LOGIN</a>
-        <a href="#" class="btn secondary">JOIN</a>
+        <a href="#" id="join-btn" class="btn secondary">JOIN</a>
       </div>
     </div>
 
@@ -52,6 +52,36 @@
       </div>
     </div>
 
+    <div class="ui basic modal join">
+      <i class="close fa fa-close"></i>
+      <div class="header">
+        Join
+      </div>
+      <div class="content">
+        <div class="ui form">
+          <div class="field">
+            <label>Username</label>
+            <input type="text">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email">
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="two fluid ui inverted buttons">
+          <div class="ui green basic inverted button">
+            <i class="fa fa-lock"></i>
+            Register
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="../js/jquery-1.10.2.min.js"></script>
     <script src="../js/semantic.min.js"></script>
@@ -59,6 +89,7 @@
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
     <script type="text/javascript">
       $('.modal').modal('attach events', '#login-btn', 'show');
+      $('.join').modal('attach events', '#join-btn', 'show');
     </script>
 </body>
 </html>

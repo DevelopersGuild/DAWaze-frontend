@@ -187,11 +187,11 @@ SPLASH SCREEN
 	margin-top: 16px;
 }
 
-.login label {
+.modal label {
 	color: white !important;
 }
 
-.login input {
+.modal input {
 	border: 1px solid white !important;
 }
 
