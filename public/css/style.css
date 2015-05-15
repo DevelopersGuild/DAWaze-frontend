@@ -161,30 +161,32 @@ SPLASH SCREEN
 
 .splash .tagline {
 	font-size:26px; 
-	margin-top:5px;
+	margin-top: 5px;
+	margin-bottom: 3%;
 	color: white;
 }
 
 .splash .btn-menu {
-	line-height:30px; 
-	margin-top:16px; 
-	color:#FFFFFF; 
-	letter-spacing:6px;
+	margin: 0 auto;
+	width: 25%;
+	color: #FFFFFF; 
+	letter-spacing: 0.35em;
+	line-height: 40px;
 }
 
 .splash .btn {
-	display:inline-block; 
-	border-radius:30px; 
-	height:30px; 
-	width:100px; 
-	border:1px 
-	solid white; 
-	padding-left:6px;
+	margin: 5px 0;
+	display: inline-block; 
+	border-radius: 30px; 
+	width: 200px; 
+	height:40px;
+	border:1px solid white; 
 	color: white;
+	font-weight: bold;
 }
 
-.splash .btn .secondary {
-	margin-top: 16px;
+.btn:not(.secondary) {
+	background-color: rgba(255,255,255,0.2);
 }
 
 .modal label {
