@@ -1,49 +1,58 @@
-.daze-tag
-{
+.feed-tag {
+	color: #630023 !important;
+}
+
+.daze-tag {
 	background-image: url("../images/tags.png");
 	background-size: cover;
 	background-position-y: 50%;
 }
-.daze-tag div
-{
 
+.meta::before {
+
+}
+
+.feed-tag {
+	margin: 0 auto;
+	vertical-align: middle !important;
+}
+
+.daze-tag div {
 	padding-top: 100%;
 }
-.text-only
-{
+
+.text-only {
 	background-image: url("../images/tags-text.png");
 }
  
-
-.wtf
-{
+.wtf {
 	background-position-x: 0%;
 }
-.hangout
-{
+
+.hangout {
 	background-position-x: 14.275%;
 }
-.cop
-{
+
+.cop {
 	background-position-x: 28.55%;
 }
-.cool
-{
+
+.cool {
 	background-position-x: 42.87%;
 }
-.club
-{
+
+.club {
 	background-position-x: 57.15%;
 }
-.music
-{
+
+.music {
 	background-position-x: 71.4%;
 }
-.study
-{
+
+.study {
 	background-position-x: 85.7%;
 }
-.event
-{
+
+.event {
 	background-position-x: 100%;
 }
