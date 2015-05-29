@@ -1,17 +1,30 @@
 'use strict';
 
-module.exports = function(app) {
-  // var moment    = require('moment');
-  // var validator = require('validator');
+module.exports = function(app, io) {
+    var https = require('https');
 
-  // example code grabbed from da-forum
-  // var User = require('.././models/user');
-  // var Thread  = require('.././models/thread');
-  // var Reply  = require('.././models/reply');
+    var renderTemplate = function(req, res){
+        res.render('splash.html', {title: 'Welcome to Daze.'});
+    };
 
-  var renderTemplate = function(req, res){
-    res.render('index.html', {title: 'Welcome to Daze.'});
-  };
+    var home = function(req, res){
+        res.render('index.html', {title: 'Daze'});
+    };
 
-  app.get('/', renderTemplate);
+    io.on('connection', function(socket){
+        socket.on('marker', function(obj){
+            console.log('received marker obj: ' + obj);
+        })
+
+        socket.on('onlineUsers', function(num) {
+            console.log('online users: ' + num);
+        });
+
+        socket.on('disconnect', function(){
+            console.log('user disconnected.');
+        })
+    })
+
+    app.get('/', renderTemplate);
+    app.get('/home', home);
 };

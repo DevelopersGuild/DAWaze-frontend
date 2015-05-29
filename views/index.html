@@ -1,31 +1,116 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>{{ title }}</title>
+    <title>Daze by Developers' Guild</title>
 
-    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection">
-    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="/css/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../css/tags.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
-  </head>
+</head>
 
-  <body>
-    <div class="wrapper">
-        <div id='mapbox-container'>
-            <h2 class="ui center aligned icon header">
-              <i class="fa fa-map-marker fa-2x"></i>
-              <div class="content">
-                Mapbox Demo
-                <div class="sub header">Basic setup.</div>
+<body>
+  <header>
+    <div class="ui menu">
+      <a class="item" id="feed-btn">
+        <i class="fa fa-list"></i>
+      </a>
+      <div class="right text icon menu">
+        <a class="item" id="live-btn">
+          <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
+  </header>
+    <div class="ui left vertical labeled icon sidebar menu" id="feed-menu" style="width: 500px;">
+      <div class="header item">
+        Feed
+      </div>
+        <a class="item" href="#">
+          <div class="ui feed">
+            <div class="event">
+              <div class="label feed-tag">
+                <div class="daze-tag">
+                    <div class="wtf">
+                    </div>
+                  </div>
               </div>
-            </h2>
-            <div id='map'></div>
+              <div class="content">
+                <div class="summary">
+                  Developers Guild meeting at ATC 309 on 1:30PM-3:30PM!
+                </div>
+                
+                <div class="meta">
+                  ATC 309 • 1:30PM - 3:30PM • Posted 3 hours ago
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+    </div>
+
+    <div class="ui right vertical wide sidebar menu" id="add-menu">
+        <div class="header item">
+            Add Marker
+        </div>
+        <div class="item">
+            <div class="ui input"><input type="text" placeholder="Also demo" style="width:90%;"></div>
         </div>
     </div>
-    <script src="/js/jquery-1.10.2.min.js"></script>
-    <script src="/js/semantic.min.js"></script>
-    <script src="/js/scripts.js"></script>
+    <div class="ui first coupled small modal">
+        <div class="header">
+          Modal #1
+        </div>
+        <div class="content">
+          <div class="image">
+            <i class="fa fa-arrow-right"></i>
+          </div>
+          <div class="description">
+            <div class="ui form">
+              <div class="field">
+                  <label>Username</label>
+                  <input placeholder="Username" type="text">
+                </div>
+                <div class="field">
+                  <label>Password</label>
+                  <input type="password">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="primary ui button">Proceed</div>
+        </div>
+      </div>
+      <div class="ui small second coupled modal">
+        <div class="header">
+          Modal #2
+        </div>
+        <div class="content">
+          <div class="description">
+            <p>Message for user to indicate login success/fail.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <div class="ui approve button">
+            <i class="fa fa-check"></i>
+            All Done
+          </div>
+        </div>
+      </div>
+    <div class="wrapper">
+      <div id='mapbox-container'>
+          <div id='map'></div>
+      </div>
+    </div>
+
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/semantic.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/scripts.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
-  </body>
+</body>
 </html>
