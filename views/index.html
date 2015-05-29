@@ -18,6 +18,14 @@ body {
   background: #e8e8e8;
 }
 
+.modal-wrap {
+  position:absolute;
+  z-index:1;
+  width:100%;
+  margin:0 auto;
+  visibility:hidden;"
+}
+
 .wrap {
   text-align:center;
   margin:0 auto;
@@ -118,12 +126,12 @@ input:focus, textarea:focus {
 }
 
 .marker-location {
-  padding:16px 16px 0 48px;
+  padding:16px 16px 0 44px;
 }
 
 .marker-location input {
   margin-left:18px;
-  padding-left: 15px !important;
+  padding-left: 12px !important;
   font-family:monospace;
 }
 
@@ -134,6 +142,7 @@ input:focus, textarea:focus {
 .marker-time input {
   margin-left:16px;
   font-family:monospace;
+  font-weight: 100;
 }
 
 .fa-chevron-left, .fa-chevron-right {
@@ -156,6 +165,10 @@ input:focus, textarea:focus {
   margin-left:2px;
 }
 
+.fa-clock-o {
+  float: left;
+}
+
 .add-marker-btn {
   background:#222;
   color:#DDD;
@@ -164,6 +177,10 @@ input:focus, textarea:focus {
   line-height: 28px;
   height: 28px;
   box-sizing: content-box;
+}
+
+.visible {
+  visibility: visible !important;
 }
 
 *::-webkit-input-placeholder {
@@ -181,6 +198,14 @@ input:focus, textarea:focus {
   /* IE 10+ */
   color: #d2bdc3;
 }
+
+.close {
+  display: inline-block;
+  font-size: 18px;
+  text-align: right;
+  padding: 10px 15px;
+  float: right;
+}
     </style>
 </head>
 
@@ -197,106 +222,62 @@ input:focus, textarea:focus {
       </div>
     </div>
   </header>
-
-    <div class="ui left vertical labeled icon sidebar menu" id="feed-menu" style="width: 500px;">
-      <div class="header">
-        <div class="ui menu">
-          <div class="left text icon menu">
-            <p class="item">Feed</p>
-          </div>
-          <div class="right text icon menu">
-            {% if isLoggedIn %}
-              <a class="item" href="/logout">Logout</a>
-            {% else %}
-              <a class="item" href="/">Login/Signup</a>
-            {% endif %}
-          </div>
+   <div class="modal-wrap">
+    <div class="wrap">
+      <div class="add-marker-header">
+        <div class="close">&times;</div>
+        <div class="marker-name">cool</div>
+        <i class="btn prev fa fa-chevron-left fa-2x"></i>
+        <div class="frame" id="forcecentered">
+          <ul class="clearfix">
+            <li name="WTF">
+              <div class="daze-tag wtf text-only"><div></div></div>
+            </li>
+            <li name="hangout">
+              <div class="daze-tag hangout text-only"><div></div></div>
+            </li>
+            <li name="cop">
+              <div class="daze-tag cop text-only"><div></div></div>
+            </li>
+            <li name="cool">
+              <div class="daze-tag cool text-only"><div></div></div>
+            </li>
+            <li name="club">
+              <div class="daze-tag club text-only"><div></div></div>
+            </li>
+            <li name="music">
+              <div class="daze-tag music text-only"><div></div></div>
+            </li>
+            <li name="study">
+              <div class="daze-tag study text-only"><div></div></div>
+            </li>
+            <li name="event">
+              <div class="daze-tag event text-only"><div></div></div>
+            </li>
+  <!--           <li name="WTF"><i class="fa fa-bomb"></i></li>
+            <li name="police"><i class="fa fa-exclamation-triangle"></i></li>
+            <li name="cool"><i class="fa fa-star"></i></li>
+            <li name="food"><i class="fa fa-coffee"></i></li>
+            <li name="other"><i class="fa fa-bell"></i></li> -->
+          </ul>
+        </div>
+        <i class="btn next fa fa-chevron-right fa-2x"></i>
+      </div>
+      <form>
+      <div class="add-marker-body">
+        <textarea class="marker-content" placeholder="What's happening?" maxlength="140"></textarea>
+        <div class="marker-location">
+          <i class="fa fa-map-marker"></i>
+          <input placeholder="Where?">
+        </div>
+        <div class="marker-time">
+          <i class="fa fa-clock-o add-on"></i>
+          <input type="text" name="timepicker" class="time_element" placeholder="When?"/>
         </div>
       </div>
-      <a class="item" href="#">
-        <div class="ui feed">
-          <div class="event">
-            <div class="label feed-tag">
-              <div class="daze-tag">
-                  <div class="wtf">
-                  </div>
-                </div>
-            </div>
-            <div class="content">
-              <div class="summary">
-                Developers Guild meeting at ATC 309 on 1:30PM-3:30PM!
-              </div>
-
-              <div class="meta">
-                ATC 309 • 1:30PM - 3:30PM • Posted 3 hours ago
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
+      <div class="add-marker-btn">ADD</div>
+      </form>
     </div>
-
-   <div style="position:absolute;z-index:1; width:100%; margin:0 auto;">
-        <div class="wrap">
-    <div class="add-marker-header">
-      <div class="marker-name">cool</div>
-      <div class="marker-title">
-        <input placeholder="Title">
-      </div>
-      <i class="btn prev fa fa-chevron-left fa-2x"></i>
-      <div class="frame" id="forcecentered">
-        <ul class="clearfix">
-          <li name="WTF">
-            <div class="daze-tag wtf text-only" style=""><div></div></div>
-          </li>
-          <li name="hangout">
-            <div class="daze-tag hangout text-only" style=""><div></div></div>
-          </li>
-          <li name="cop">
-            <div class="daze-tag cop text-only" style=""><div></div></div>
-          </li>
-          <li name="cool">
-            <div class="daze-tag cool text-only" style=""><div></div></div>
-          </li>
-          <li name="club">
-            <div class="daze-tag club text-only" style=""><div></div></div>
-          </li>
-          <li name="music">
-            <div class="daze-tag music text-only" style=""><div></div></div>
-          </li>
-          <li name="study">
-            <div class="daze-tag study text-only" style=""><div></div></div>
-          </li>
-          <li name="event">
-            <div class="daze-tag event text-only" style=""><div></div></div>
-          </li>
-<!--           <li name="WTF"><i class="fa fa-bomb"></i></li>
-          <li name="police"><i class="fa fa-exclamation-triangle"></i></li>
-          <li name="cool"><i class="fa fa-star"></i></li>
-          <li name="food"><i class="fa fa-coffee"></i></li>
-          <li name="other"><i class="fa fa-bell"></i></li> -->
-        </ul>
-      </div>
-      <i class="btn next fa fa-chevron-right fa-2x"></i>
-    </div>
-    <form>
-    <div class="add-marker-body">
-      <textarea class="marker-content" placeholder="What's happening?" maxlength="140"></textarea>
-      <div class="marker-location">
-        <i class="fa fa-map-marker"></i>
-        <input placeholder="Where?">
-      </div>
-      <div class="marker-time">
-        <i class="fa fa-clock-o add-on"></i>
-        <!-- <input placeholder="When?"> -->
-        <div class="input-append bootstrap-timepicker">
-            <input id="timepicker1" type="text" class="input-small">
-        </div>
-      </div>
-    </div>
-    <div class="add-marker-btn">ADD</div>
-    </form>
-  </div>
    </div>
 
     <div class="ui right vertical labeled icon sidebar menu" id="feed-menu" style="width: 200px;">
@@ -388,50 +369,56 @@ input:focus, textarea:focus {
     <script src="/js/scripts.js"></script>
     <script src="/js/bootstrap-timepicker.min.js"></script>
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.js'></script>
-    <script src="http://darsa.in/sly/examples/js/vendor/plugins.js"></script>
-    <script src="http://darsa.in/sly/js/sly.min.js"></script>
-    <script type="text/javascript">
-      $('#timepicker1').timepicker();
-    </script>
+    <script src="/js/sly.vendor.js"></script>
+    <script src="/js/sly.js"></script>
+    <script src="/js/timepicki.js"></script>
     <script>
-    // -------------------------------------------------------------
-    //   Sly item based horizontal scroll navigation
-    // -------------------------------------------------------------
-    (function () {
-      var $frame = $('#forcecentered');
-      var $wrap  = $frame.parent();
-
-      // Call Sly on frame
-      $frame.sly({
-        horizontal: 1,
-        itemNav: 'forceCentered',
-        smart: 1,
-        activateMiddle: 1,
-        activateOn: 'click',
-        mouseDragging: 1,
-        touchDragging: 1,
-        releaseSwing: 1,
-        startAt: 3,
-        speed: 300,
-        elasticBounds: 1,
-        easing: 'easeOutExpo',
-
-        // Buttons
-        prev: $wrap.find('.prev'),
-        next: $wrap.find('.next')
-      });
-
-      $('.wrap').click(function() {
-        var selected = $('.active').attr("name");
-        $('.marker-name').html(selected);
-      });
-
-      $('.wrap').toggle();
-      $('#live-btn').click(function() {
-        $('.wrap').toggle();
-      });
-
-    }());
+    $(document).ready(function(){
+      $(".time_element").timepicki();
+    });
     </script>
+  <script>
+  // -------------------------------------------------------------
+  //   Sly item based horizontal scroll navigation
+  // -------------------------------------------------------------
+  (function () {
+    var $frame = $('#forcecentered');
+    var $wrap  = $frame.parent();
+
+    // Call Sly on frame
+    $frame.sly({
+      horizontal: 1,
+      itemNav: 'forceCentered',
+      smart: 1,
+      activateMiddle: 1,
+      activateOn: 'click',
+      mouseDragging: 1,
+      touchDragging: 1,
+      releaseSwing: 1,
+      startAt: 3,
+      speed: 300,
+      elasticBounds: 1,
+      easing: 'easeOutExpo',
+
+      // Buttons
+      prev: $wrap.find('.prev'),
+      next: $wrap.find('.next')
+    });
+
+    $('.wrap').click(function() {
+      var selected = $('.active').attr("name");
+      $('.marker-name').html(selected);
+    });
+
+    $('#live-btn').click(function() {
+      $('.modal-wrap').toggleClass('visible');
+    });
+
+    $('.close').click(function() {
+      $('.modal-wrap').toggleClass('visible');
+    });
+
+  }());
+  </script>
 </body>
 </html>
