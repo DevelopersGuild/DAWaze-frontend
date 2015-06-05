@@ -3,7 +3,7 @@
 var bodyParser    = require('body-parser');
 var cookieParser  = require('cookie-parser');
 var express       = require('express');
-var favicon 	  = require('serve-favicon');
+var favicon       = require('serve-favicon');
 var nunjucks      = require('nunjucks');
 var request       = require('request');
 var path          = require('path');
@@ -26,7 +26,7 @@ env.express(app);
 
 // Tell Express to serve static objects from the /public/ directory
 app.use(express.static(__dirname + '/public'));
-app.use(favicon(__dirname + '/public/images/favicon.ico')); 
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // routing
 require('./routes/main')(app, io);
