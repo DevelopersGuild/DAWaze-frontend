@@ -8,6 +8,8 @@ var nunjucks      = require('nunjucks');
 var request       = require('request');
 var path          = require('path');
 
+var CookieConfig  = require('./config/cookie');
+
 // Use middleware
 var app = express();
 var server = require('http').Server(app);
@@ -15,6 +17,7 @@ var io = require('socket.io')(server);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser(CookieConfig.secret));
 
 var SERVER_ADDRESS = process.env.SERVER_ADDRESS || 'localhost';
 var SERVER_PORT = process.env.SERVER_PORT || 3000;
