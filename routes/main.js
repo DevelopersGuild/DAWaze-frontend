@@ -1,15 +1,33 @@
 'use strict';
 
+var API = require('../models/api');
+
 module.exports = function(app, io) {
-    var https = require('https');
 
-    var renderTemplate = function(req, res){
-        res.render('splash.html', {title: 'Welcome to Daze.'});
-    };
+  function renderStatic(template, title) {
+    return function(req, res) {
 
-    var home = function(req, res){
-        res.render('index.html', {title: 'Daze'});
+      res.render('splash.html', {title: title});
+
     };
+  }
+
+  function renderMap(req, res) {
+    API.getMap({}, function(err, clientErr, _res) {
+
+      if (err) {
+        console.error(err);
+        res.send(err.message);
+      } else if (clientErr) {
+        res.send(clientErr.message);
+      } else {
+        res.render('index.html',
+          {title: 'Home :: Daze', markers: _res.markers}
+        );
+      }
+
+    });
+  }
 
     io.on('connection', function(socket){
         socket.on('marker', function(obj){
@@ -25,6 +43,6 @@ module.exports = function(app, io) {
         })
     })
 
-    app.get('/', renderTemplate);
-    app.get('/home', home);
+    app.get('/', renderStatic('splash.html', 'Welcome to Daze!'));
+    app.get('/home', renderMap);
 };
