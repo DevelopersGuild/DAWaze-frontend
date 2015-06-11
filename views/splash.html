@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Daze by Developers' Guild</title>
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/semantic.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/semantic.min.css" type="text/css">
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.8/mapbox.css' rel='stylesheet' />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/css/style.css" type="text/css" media="screen, projection">
 </head>
 
 <body>
@@ -28,26 +28,21 @@
     <div class="ui basic modal login">
       <i class="close fa fa-close"></i>
       <div class="header">
-        Login 
+        Login
       </div>
       <div class="content">
         <div class="ui form">
-          <div class="field">
-              <label>Username</label>
-              <input type="text">
+         <form action="/login" method="POST">
+            <div class="field">
+              <label>Username/Email</label>
+              <input type="text" name="usernameEmail">
             </div>
             <div class="field">
               <label>Password</label>
-              <input type="password">
+              <input type="password" name="password">
             </div>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="two fluid ui inverted buttons">
-          <div class="ui green basic inverted button">
-            <i class="fa fa-lock"></i>
-            Login
-          </div>
+            <button class="ui green basic inverted button"><i class="fa fa-lock"></i>  Login</button>
+          </form>
         </div>
       </div>
     </div>
@@ -59,26 +54,21 @@
       </div>
       <div class="content">
         <div class="ui form">
-          <div class="field">
-            <label>Username</label>
-            <input type="text">
-          </div>
-          <div class="field">
-            <label>Password</label>
-            <input type="password">
-          </div>
-          <div class="field">
-            <label>Email</label>
-            <input type="email">
-          </div>
-        </div>
-      </div>
-      <div class="actions">
-        <div class="two fluid ui inverted buttons">
-          <div class="ui green basic inverted button">
-            <i class="fa fa-lock"></i>
-            Register
-          </div>
+         <form action="/join" method="POST">
+            <div class="field">
+              <label>Username</label>
+              <input type="text" name="username">
+            </div>
+            <div class="field">
+              <label>Email</label>
+              <input type="text" name="email">
+            </div>
+            <div class="field">
+              <label>Password</label>
+              <input type="password" name="password">
+            </div>
+            <button class="ui green basic inverted button"><i class="fa fa-lock"></i>  Join</button>
+          </form>
         </div>
       </div>
     </div>

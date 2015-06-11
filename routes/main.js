@@ -1,15 +1,16 @@
 'use strict';
 
 var API = require('../models/api');
+var CookieConfig = require('../config/cookie');
 
 module.exports = function(app, io) {
 
-  function renderStatic(template, title) {
-    return function(req, res) {
-
-      res.render('splash.html', {title: title});
-
-    };
+  function renderSplash(req, res) {
+    if (req.signedCookies.token) {
+      res.redirect('/home');
+    } else {
+      res.render('splash.html', {title: 'Welcome to Daze!'});
+    }
   }
 
   function renderMap(req, res) {
@@ -29,6 +30,41 @@ module.exports = function(app, io) {
     });
   }
 
+  function handleUserLogin(req, res) {
+    API.authenticateUser(req.body, function(err, clientErr, _res) {
+
+      if (err) {
+        console.error(err);
+        res.send(err.message);
+      } else if (clientErr) {
+        res.send(clientErr.message);
+      } else {
+        res.redirect('/home');
+      }
+
+    });
+  }
+
+  function handleUserSignup(req, res) {
+
+    API.createUser(req.body, function(err, clientErr, _res) {
+
+      if (err) {
+        console.error(err);
+        res.send(err.message);
+      } else if (clientErr) {
+        res.send(clientErr.message);
+      } else {
+        var options = CookieConfig.options;
+        options.maxAge = _res.ttl;
+        res.cookie('token', _res.token, options);
+        res.redirect('/home');
+      }
+
+    });
+  }
+
+
     io.on('connection', function(socket){
         socket.on('marker', function(obj){
             console.log('received marker obj: ' + obj);
@@ -43,6 +79,8 @@ module.exports = function(app, io) {
         })
     })
 
-    app.get('/', renderStatic('splash.html', 'Welcome to Daze!'));
+    app.get('/', renderSplash);
     app.get('/home', renderMap);
+    app.post('/login', handleUserLogin);
+    app.post('/join', handleUserSignup);
 };
