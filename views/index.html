@@ -24,7 +24,10 @@ body {
   z-index:1; 
   width:100%; 
   margin:0 auto; 
-  visibility:hidden;"
+  visibility:hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .wrap {
@@ -109,15 +112,41 @@ input:focus, textarea:focus {
   padding-bottom:20px;
 }
 
-.add-marker-body {
+.marker-info-header{
+  background:#d2bdc3;
+}
+
+.add-marker-body, .marker-info-body {
   /*background:#777;*/
   background:#764051;
   padding:36px 20px;
 }
 
-.marker-name {
+.marker-title {
   padding: 42px; 
   font-size:13.3333330154419px;
+}
+
+.marker-title input{
+  color: #000;
+  text-align: center;
+  border-radius: 0 !important;
+}
+
+.marker-title ::-webkit-input-placeholder {
+   color: #000;
+}
+
+.marker-title :-moz-placeholder { /* Firefox 18- */
+   color: #000;  
+}
+
+.marker-title ::-moz-placeholder {  /* Firefox 19+ */
+   color: #000;  
+}
+
+.marker-title:-ms-input-placeholder {  
+   color: #000;  
 }
 
 .marker-content {
@@ -128,6 +157,14 @@ input:focus, textarea:focus {
 
 .marker-location {
   padding:16px 16px 0 44px;
+}
+
+#marker-info .marker-location{
+  padding:16px 16px 0 48px;
+}
+
+.marker-info-body .fa-map-marker{
+  float: left;
 }
 
 .marker-location input {
@@ -207,6 +244,19 @@ input:focus, textarea:focus {
   padding: 10px 15px;
   float: right;
 }
+
+.marker-location span{
+  padding-left: 24px;
+}
+
+.marker-time span{
+  padding-left: 20px;
+}
+
+.marker-info-body{
+  text-align: left;
+}
+
     </style>
 </head>
 
@@ -223,11 +273,13 @@ input:focus, textarea:focus {
       </div>
     </div>
   </header>
-   <div class="modal-wrap">
+
+  <!-- add marker modal -->
+   <div class="modal-wrap" id="add-marker">
     <div class="wrap">
       <div class="add-marker-header">
         <div class="close">&times;</div>
-        <div class="marker-name">cool</div>   
+        <div class="marker-title"><input type="text" placeholder="Event title"></div>   
         <i class="btn prev fa fa-chevron-left fa-2x"></i>
         <div class="frame" id="forcecentered">
           <ul class="clearfix">
@@ -255,11 +307,6 @@ input:focus, textarea:focus {
             <li name="event">
               <div class="daze-tag event text-only"><div></div></div>
             </li>
-  <!--           <li name="WTF"><i class="fa fa-bomb"></i></li>
-            <li name="police"><i class="fa fa-exclamation-triangle"></i></li>
-            <li name="cool"><i class="fa fa-star"></i></li>
-            <li name="food"><i class="fa fa-coffee"></i></li>
-            <li name="other"><i class="fa fa-bell"></i></li> -->
           </ul>
         </div>
         <i class="btn next fa fa-chevron-right fa-2x"></i>
@@ -279,34 +326,29 @@ input:focus, textarea:focus {
       <div class="add-marker-btn">ADD</div>
       </form>
     </div>
-   </div>
-
-    <div class="ui right vertical labeled icon sidebar menu" id="feed-menu" style="width: 200px;">
-        <a class="item" id="dt-wtf">
-            WTF?
-        </a>
-        <a class="item" id="dt-hangout">
-            Hangout
-        </a>
-        <a class="item" id="dt-cop">
-            Cop
-        </a>
-        <a class="item" id="dt-cool">
-            Cool
-        </a>
-        <a class="item" id="dt-club">
-            Club
-        </a>
-        <a class="item" id="dt-music">
-            Music
-        </a>
-        <a class="item" id="dt-study">
-            Study
-        </a>
-        <a class="item" id="dt-event">
-            Event
-        </a>
-    </div>
+  </div>
+  <!-- END add marker modal -->
+  
+  <!-- marker info modal -->
+  <div class="modal-wrap" id="marker-info">
+      <div class="wrap">
+        <div class="marker-info-header">
+          <div class="close">&times;</div>
+          <div class="marker-title">cool</div>
+        </div>
+        <form>
+          <div class="marker-info-body">
+            <div class="marker-location">
+              <i class="fa fa-map-marker"></i><span>AT311</span>
+            </div>
+            <div class="marker-time">
+              <i class="fa fa-clock-o add-on"></i><span>1:30PM-3:30PM</span>
+            </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  <!-- END marker info modal -->
 
   <div class="ui right vertical wide sidebar menu" id="add-menu">
       <div class="header item">
@@ -366,16 +408,29 @@ input:focus, textarea:focus {
 
     $('.wrap').click(function() {
       var selected = $('.active').attr("name");
-      $('.marker-name').html(selected);
+      // $('.marker-name').html(selected);
     });
 
     $('#live-btn').click(function() {
-      $('.modal-wrap').toggleClass('visible');
+      $('#add-marker').toggleClass('visible');
     });
 
-    $('.close').click(function() {
-      $('.modal-wrap').toggleClass('visible');
+    $('#add-marker .close').click(function() {
+      $('#add-marker').toggleClass('visible');
     });
+    
+    $('#add-marker .add-marker-btn').click(function() {
+      $('#add-marker').toggleClass('visible');
+    });
+
+    $('#marker-info .close').click(function() {
+      $('#marker-info').toggleClass('visible');
+    });
+
+    $('.leaflet-marker-icon').click(function() {
+      $('#marker-info').toggleClass('visible');
+    });
+
     
   }());
   </script>
