@@ -23,7 +23,34 @@ body {
   z-index:1;
   width:100%;
   margin:0 auto;
-  visibility:hidden;"
+  visibility:hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-wrap2 {
+  position:absolute;
+  z-index:1;
+  width:100%;
+  margin:0 auto;
+  visibility:hidden;
+  pointer-events: none;
+  bottom: 0%;
+  left: 50%;
+  opacity: 0.9;
+  transform: translate(-50%, -50%);
+}
+
+.modal-wrap3 {
+  position:absolute;
+  z-index:1;
+  width:100%;
+  margin:0 auto;
+  visibility:hidden;
+  bottom: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .wrap {
@@ -108,15 +135,42 @@ input:focus, textarea:focus {
   padding-bottom:20px;
 }
 
-.add-marker-body {
+.marker-info-header{
+  background:#d2bdc3;
+}
+
+.add-marker-body, .marker-info-body {
   /*background:#777;*/
   background:#764051;
   padding:36px 20px;
 }
 
-.marker-name {
+
+.marker-title {
   padding: 42px;
   font-size:13.3333330154419px;
+}
+
+.marker-title input{
+  color: #000;
+  text-align: center;
+  border-radius: 0 !important;
+}
+
+.marker-title ::-webkit-input-placeholder {
+   color: #000;
+}
+
+.marker-title :-moz-placeholder { /* Firefox 18- */
+   color: #000;
+}
+
+.marker-title ::-moz-placeholder {  /* Firefox 19+ */
+   color: #000;
+}
+
+.marker-title:-ms-input-placeholder {
+   color: #000;
 }
 
 .marker-content {
@@ -127,6 +181,14 @@ input:focus, textarea:focus {
 
 .marker-location {
   padding:16px 16px 0 44px;
+}
+
+#marker-info .marker-location{
+  padding:16px 16px 0 48px;
+}
+
+.marker-info-body .fa-map-marker{
+  float: left;
 }
 
 .marker-location input {
@@ -206,6 +268,19 @@ input:focus, textarea:focus {
   padding: 10px 15px;
   float: right;
 }
+
+.marker-location span{
+  padding-left: 24px;
+}
+
+.marker-time span{
+  padding-left: 20px;
+}
+
+.marker-info-body{
+  text-align: left;
+}
+
     </style>
 </head>
 
@@ -222,11 +297,15 @@ input:focus, textarea:focus {
       </div>
     </div>
   </header>
-   <div class="modal-wrap">
+
+  <!-- add marker modal -->
+   <div class="modal-wrap" id="add-marker">
     <div class="wrap">
       <div class="add-marker-header">
         <div class="close">&times;</div>
-        <div class="marker-name">cool</div>
+
+        <div class="marker-title"><input type="text" placeholder="Event title"></div>
+
         <i class="btn prev fa fa-chevron-left fa-2x"></i>
         <div class="frame" id="forcecentered">
           <ul class="clearfix">
@@ -254,59 +333,69 @@ input:focus, textarea:focus {
             <li name="event">
               <div class="daze-tag event text-only"><div></div></div>
             </li>
-  <!--           <li name="WTF"><i class="fa fa-bomb"></i></li>
-            <li name="police"><i class="fa fa-exclamation-triangle"></i></li>
-            <li name="cool"><i class="fa fa-star"></i></li>
-            <li name="food"><i class="fa fa-coffee"></i></li>
-            <li name="other"><i class="fa fa-bell"></i></li> -->
           </ul>
         </div>
         <i class="btn next fa fa-chevron-right fa-2x"></i>
       </div>
-      <form>
-      <div class="add-marker-body">
+      <form id="add-marker-form" action="/addmarker" method="POST">
+      <div class="add-marker-body" id="add-marker">
         <textarea class="marker-content" placeholder="What's happening?" maxlength="140"></textarea>
         <div class="marker-location">
           <i class="fa fa-map-marker"></i>
           <input placeholder="Where?">
         </div>
-        <div class="marker-time">
+    <!--    <div class="marker-time">
           <i class="fa fa-clock-o add-on"></i>
           <input type="text" name="timepicker" class="time_element" placeholder="When?"/>
         </div>
+    -->
       </div>
-      <div class="add-marker-btn">ADD</div>
+      <button class="add-marker-btn">ADD</button>
       </form>
     </div>
-   </div>
+  </div>
+  <!-- END add marker modal -->
 
-    <div class="ui right vertical labeled icon sidebar menu" id="feed-menu" style="width: 200px;">
-        <a class="item" id="dt-wtf">
-            WTF?
-        </a>
-        <a class="item" id="dt-hangout">
-            Hangout
-        </a>
-        <a class="item" id="dt-cop">
-            Cop
-        </a>
-        <a class="item" id="dt-cool">
-            Cool
-        </a>
-        <a class="item" id="dt-club">
-            Club
-        </a>
-        <a class="item" id="dt-music">
-            Music
-        </a>
-        <a class="item" id="dt-study">
-            Study
-        </a>
-        <a class="item" id="dt-event">
-            Event
-        </a>
-    </div>
+  <!-- marker info modal -->
+  <div class="modal-wrap" id="marker-info">
+      <div class="wrap">
+        <div class="marker-info-header">
+          <div class="close">&times;</div>
+          <div class="marker-title" id="info-title"></div>
+        </div>
+          <div class="marker-info-body">
+            <div >
+              <span id="info-description"></span>
+            </div>
+            <div class="marker-location">
+              <i class="fa fa-map-marker"></i><span id="info-location"></span>
+            </div>
+            <!--
+            <div class="marker-time">
+              <i class="fa fa-clock-o add-on"></i><span>1:30PM-3:30PM</span>
+            </div>
+            -->
+          </div>
+      </div>
+  </div>
+  <!-- END marker info modal -->
 
+  <div class="modal-wrap2" id="add-marker-diag">
+      <div class="wrap">
+        <div class="marker-info-header">
+          <div class="marker-title">Click where you want to place your marker.</div>
+        </div>
+      </div>
+  </div>
+
+  <div class="modal-wrap3" id="error">
+      <div class="wrap">
+        <div class="marker-info-header">
+        <div class="close">&times;</div>
+          <div class="marker-title error-text"></div>
+        </div>
+      </div>
+  </div>
 
     <div class="ui right vertical wide sidebar menu" id="add-menu">
         <div class="header item">
@@ -377,48 +466,6 @@ input:focus, textarea:focus {
       $(".time_element").timepicki();
     });
     </script>
-  <script>
-  // -------------------------------------------------------------
-  //   Sly item based horizontal scroll navigation
-  // -------------------------------------------------------------
-  (function () {
-    var $frame = $('#forcecentered');
-    var $wrap  = $frame.parent();
 
-    // Call Sly on frame
-    $frame.sly({
-      horizontal: 1,
-      itemNav: 'forceCentered',
-      smart: 1,
-      activateMiddle: 1,
-      activateOn: 'click',
-      mouseDragging: 1,
-      touchDragging: 1,
-      releaseSwing: 1,
-      startAt: 3,
-      speed: 300,
-      elasticBounds: 1,
-      easing: 'easeOutExpo',
-
-      // Buttons
-      prev: $wrap.find('.prev'),
-      next: $wrap.find('.next')
-    });
-
-    $('.wrap').click(function() {
-      var selected = $('.active').attr("name");
-      $('.marker-name').html(selected);
-    });
-
-    $('#live-btn').click(function() {
-      $('.modal-wrap').toggleClass('visible');
-    });
-
-    $('.close').click(function() {
-      $('.modal-wrap').toggleClass('visible');
-    });
-
-  }());
-  </script>
 </body>
 </html>

@@ -60,6 +60,21 @@ module.exports = function(app, io) {
     });
   }
 
+  function handleAddMarker(req, res) {
+    API.createMarker(req.body, function(err, clientErr, _res) {
+
+      if (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+      } else if (clientErr) {
+        res.status(400).send(clientErr.message);
+      } else {
+        res.status(200).send();
+      }
+
+    });
+  }
+
   function handleUserLogout(req, res) {
     if (req.signedCookies.token) {
       API.logoutUser({token: req.signedCookies.token},
@@ -112,4 +127,5 @@ module.exports = function(app, io) {
     app.get('/logout', handleUserLogout);
     app.post('/login', handleUserLogin);
     app.post('/join', handleUserSignup);
+    app.post('/addmarker', handleAddMarker);
 };
