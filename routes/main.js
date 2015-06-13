@@ -22,9 +22,11 @@ module.exports = function(app, io) {
       } else if (clientErr) {
         res.send(clientErr.message);
       } else {
-        res.render('index.html',
-          {title: 'Home :: Daze', markers: _res.markers}
-        );
+        res.render('index.html', {
+          title: 'Home :: Daze',
+          markers: _res.markers,
+          isLoggedIn: (req.signedCookies.token ? true : false)
+        });
       }
 
     });
@@ -39,6 +41,9 @@ module.exports = function(app, io) {
       } else if (clientErr) {
         res.send(clientErr.message);
       } else {
+        var options = CookieConfig.options;
+        options.maxAge = _res.ttl;
+        res.cookie('token', _res.token, options);
         res.redirect('/home');
       }
 
@@ -64,6 +69,28 @@ module.exports = function(app, io) {
     });
   }
 
+  function handleUserLogout(req, res) {
+    if (req.signedCookies.token) {
+      API.logoutUser({token: req.signedCookies.token},
+        function(err, clientErr, _res) {
+
+          if (err) {
+            console.error(err);
+            res.send(err.message);
+          } else if (clientErr) {
+            res.send(clientErr.message);
+          } else {
+            res.clearCookie('token');
+            res.redirect('/');
+          }
+
+      }
+    );
+    } else {
+      res.send('You are not logged in!');
+    }
+  }
+
 
     io.on('connection', function(socket){
         socket.on('marker', function(obj){
@@ -81,6 +108,7 @@ module.exports = function(app, io) {
 
     app.get('/', renderSplash);
     app.get('/home', renderMap);
+    app.get('/logout', handleUserLogout);
     app.post('/login', handleUserLogin);
     app.post('/join', handleUserSignup);
 };
