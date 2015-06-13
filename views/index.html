@@ -19,37 +19,48 @@
         <i class="fa fa-list"></i>
       </a>
       <div class="right text icon menu">
-        <a class="item" id="live-btn">
+        <a class="item" {% if isLoggedIn %}id="live-btn"{% else %}href="/"{% endif %}>
           <i class="fa fa-plus"></i>
         </a>
       </div>
     </div>
   </header>
     <div class="ui left vertical labeled icon sidebar menu" id="feed-menu" style="width: 500px;">
-      <div class="header item">
-        Feed
+      <div class="header">
+        <div class="ui menu">
+          <div class="left text icon menu">
+            <p class="item">Feed</p>
+          </div>
+          <div class="right text icon menu">
+            {% if isLoggedIn %}
+              <a class="item" href="/logout">Logout</a>
+            {% else %}
+              <a class="item" href="/">Login/Signup</a>
+            {% endif %}
+          </div>
+        </div>
       </div>
-        <a class="item" href="#">
-          <div class="ui feed">
-            <div class="event">
-              <div class="label feed-tag">
-                <div class="daze-tag">
-                    <div class="wtf">
-                    </div>
+      <a class="item" href="#">
+        <div class="ui feed">
+          <div class="event">
+            <div class="label feed-tag">
+              <div class="daze-tag">
+                  <div class="wtf">
                   </div>
+                </div>
+            </div>
+            <div class="content">
+              <div class="summary">
+                Developers Guild meeting at ATC 309 on 1:30PM-3:30PM!
               </div>
-              <div class="content">
-                <div class="summary">
-                  Developers Guild meeting at ATC 309 on 1:30PM-3:30PM!
-                </div>
-                
-                <div class="meta">
-                  ATC 309 • 1:30PM - 3:30PM • Posted 3 hours ago
-                </div>
+
+              <div class="meta">
+                ATC 309 • 1:30PM - 3:30PM • Posted 3 hours ago
               </div>
             </div>
           </div>
-        </a>
+        </div>
+      </a>
     </div>
 
     <div class="ui right vertical wide sidebar menu" id="add-menu">
