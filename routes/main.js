@@ -18,9 +18,9 @@ module.exports = function(app, io) {
 
       if (err) {
         console.error(err);
-        res.send(err.message);
+        res.status(500).send(err.message);
       } else if (clientErr) {
-        res.send(clientErr.message);
+        res.status(400).send(clientErr.message);
       } else {
         res.render('index.html', {
           title: 'Home :: Daze',
@@ -37,9 +37,9 @@ module.exports = function(app, io) {
 
       if (err) {
         console.error(err);
-        res.send(err.message);
+        res.status(500).send(err.message);
       } else if (clientErr) {
-        res.send(clientErr.message);
+        res.status(400).send(clientErr.message);
       } else {
         var options = CookieConfig.options;
         options.maxAge = _res.ttl;
@@ -56,14 +56,14 @@ module.exports = function(app, io) {
 
       if (err) {
         console.error(err);
-        res.send(err.message);
+        res.status(500).send(err.message);
       } else if (clientErr) {
-        res.send(clientErr.message);
+        res.status(400).send(clientErr.message);
       } else {
         var options = CookieConfig.options;
         options.maxAge = _res.ttl;
         res.cookie('token', _res.token, options);
-        res.redirect('/home');
+        res.send(200);
       }
 
     });
@@ -76,12 +76,12 @@ module.exports = function(app, io) {
 
           if (err) {
             console.error(err);
-            res.send(err.message);
+            //res.status(500).send(err.message);
           } else if (clientErr) {
-            res.send(clientErr.message);
+            //res.status(400).send(clientErr.message);
           } else {
             res.clearCookie('token');
-            res.redirect('/');
+            res.status(200).send();
           }
 
       }
