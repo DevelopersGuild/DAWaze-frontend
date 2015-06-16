@@ -202,3 +202,11 @@ SPLASH SCREEN
 .join .button {
   width: 100% !important;
 }
+
+.error1 .button {
+  width: 100% !important;
+}
+
+.error2 .button {
+  width: 100% !important;
+}
