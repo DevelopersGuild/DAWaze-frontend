@@ -155,5 +155,19 @@ $(function() {
   $('#login').modal('attach events', '#login-btn', 'show');
   $('#splash').modal('show');
 
+  socket.on('initialize', function(markers) {
+    for (var i in markers) {
+      L.marker([markers[i].lat, markers[i].lon], {
+        icon: L.divIcon({
+        // Specify a class name we can refer to in CSS.
+        className: 'daze-tag event',
+        // Set marker width and height
+        iconSize: [60, 60]
+      })
+    }).addTo(map);
+
+    }
+  });
+
 });
 
