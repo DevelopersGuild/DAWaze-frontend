@@ -70,10 +70,13 @@ $(function() {
   });
 
   $('#add-marker-form').submit(function() {
+    var data = $('#add-marker-form').serialize() + '&lat=' + latlng.lat +
+    '&lon=' + latlng.lng + '&ttl=86400000' +
+    '&type=' + (Math.floor(Math.random() * MARKER_TYPES.length) + 1);
     $.ajax({
       url : $('#add-marker-form').attr('action'),
       type: $('#add-marker-form').attr('method'),
-      data: $('#add-marker-form').serialize(),
+      data: data,
       error: function(res) {
         var message = res.responseText || 'Something went wrong with the server.';
         $('.error-text').text(message);
@@ -242,6 +245,43 @@ $(function() {
     }
 
   });
+
+  socket.on('new marker', function(marker) {
+    var newMarker = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [marker.lon, marker.lat]
+      },
+      properties: {
+        id: marker.id,
+        _title: marker.title,
+        _description: marker.description,
+        location: marker.location,
+        icon: {
+          iconSize: [50, 50], // size of the icon
+
+          className: 'daze-tag ' + MARKER_TYPES[marker.type]
+        }
+      }
+    };
+
+    var geoJsonArr = [];
+
+    if (myLayer.getGeoJSON()) {
+
+      if (Array.isArray(myLayer.getGeoJSON())) {
+        geoJsonArr = myLayer.getGeoJSON();
+      } else {
+        geoJsonArr.push(myLayer.getGeoJSON());
+      }
+    }
+    geoJsonArr.push(newMarker);
+
+    myLayer.setGeoJSON(geoJsonArr);
+  });
+
+
 
 
 });

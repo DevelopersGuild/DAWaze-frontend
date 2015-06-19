@@ -298,13 +298,54 @@ input:focus, textarea:focus {
     </div>
   </header>
 
+  <div class="ui left vertical labeled icon sidebar menu" id="feed-menu" style="width: 500px;">
+      <div class="header">
+        <div class="ui menu">
+          <div class="left text icon menu">
+            <p class="item">Feed</p>
+          </div>
+          <div class="right text icon menu">
+            {% if isLoggedIn %}
+              <a class="item" href="/logout">Logout</a>
+            {% else %}
+              <a class="item" href="/">Login/Signup</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <a class="item" href="#">
+        <div class="ui feed">
+          <div class="event">
+            <div class="label feed-tag">
+              <div class="daze-tag">
+                  <div class="wtf">
+                  </div>
+                </div>
+            </div>
+            <div class="content">
+              <div class="summary">
+                Developers Guild meeting at ATC 309 on 1:30PM-3:30PM!
+              </div>
+
+              <div class="meta">
+                ATC 309 • 1:30PM - 3:30PM • Posted 3 hours ago
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+
   <!-- add marker modal -->
    <div class="modal-wrap" id="add-marker">
     <div class="wrap">
+      <form id="add-marker-form" action="/addmarker" method="POST">
       <div class="add-marker-header">
         <div class="close">&times;</div>
 
-        <div class="marker-title"><input type="text" placeholder="Event title"></div>
+        <div class="marker-title">
+          <input type="text" name="title" placeholder="Event title">
+        </div>
 
         <i class="btn prev fa fa-chevron-left fa-2x"></i>
         <div class="frame" id="forcecentered">
@@ -337,12 +378,12 @@ input:focus, textarea:focus {
         </div>
         <i class="btn next fa fa-chevron-right fa-2x"></i>
       </div>
-      <form id="add-marker-form" action="/addmarker" method="POST">
+
       <div class="add-marker-body" id="add-marker">
-        <textarea class="marker-content" placeholder="What's happening?" maxlength="140"></textarea>
+        <textarea class="marker-content" name="description" placeholder="What's happening?" maxlength="140"></textarea>
         <div class="marker-location">
           <i class="fa fa-map-marker"></i>
-          <input placeholder="Where?">
+          <input placeholder="Where?" name="location">
         </div>
     <!--    <div class="marker-time">
           <i class="fa fa-clock-o add-on"></i>

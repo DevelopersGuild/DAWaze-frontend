@@ -61,6 +61,9 @@ module.exports = function(app, io) {
   }
 
   function handleAddMarker(req, res) {
+
+    var data = req.body;
+    data.token = req.signedCookies.token;
     API.createMarker(req.body, function(err, clientErr, _res) {
 
       if (err) {
@@ -69,7 +72,8 @@ module.exports = function(app, io) {
       } else if (clientErr) {
         res.status(400).send(clientErr.message);
       } else {
-        res.status(200).send();
+        io.emit('new marker', _res.marker);
+        res.sendStatus(200);
       }
 
     });
