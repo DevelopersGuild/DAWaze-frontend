@@ -1,11 +1,10 @@
 .feed-tag {
-	color: #630023 !important;
+  color: #630023 !important;
 }
 
 .daze-tag {
-	background-image: url("../images/tags.png");
-	background-size: cover;
-	background-position-y: 50%;
+  background-size: cover;
+  background-position-y: 50%;
 }
 
 .meta::before {
@@ -13,46 +12,46 @@
 }
 
 .feed-tag {
-	margin: 0 auto;
-	vertical-align: middle !important;
+  margin: 0 auto;
+  vertical-align: middle !important;
 }
 
 .daze-tag div {
-	padding-top: 100%;
+  padding-top: 100%;
 }
 
 .text-only {
-	background-image: url("/images/tags-text.png");
+  background-image: url("/images/tags-text.png");
 }
 
 .wtf {
-	background-position-x: 0%;
+  background-image: url("/images/tag-wtf.png");
 }
 
 .hangout {
-	background-position-x: 14.275%;
+ background-image: url("/images/tag-hangout.png");
 }
 
 .cop {
-	background-position-x: 28.55%;
+  background-image: url("/images/tag-cop.png");
 }
 
 .cool {
-	background-position-x: 42.87%;
+  background-image: url("/images/tag-cool.png");
 }
 
 .club {
-	background-position-x: 57.15%;
+  background-image: url("/images/tag-club.png");
 }
 
 .music {
-	background-position-x: 71.4%;
+  background-image: url("/images/tag-music.png");
 }
 
 .study {
-	background-position-x: 85.7%;
+  background-image: url("/images/tag-study.png");
 }
 
 .event {
-	background-position-x: 100%;
+  background-image: url("/images/tag-event.png");
 }
