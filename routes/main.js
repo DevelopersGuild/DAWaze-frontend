@@ -67,14 +67,17 @@ module.exports = function(app, io) {
 
           if (err) {
             console.error(err);
+
             //res.status(500).send(err.message);
           } else if (clientErr) {
+
             //res.status(400).send(clientErr.message);
           } else {
-            res.clearCookie('token');
-            res.status(200).send();
+            //res.clearCookie('token');
+            //res.status(200).send();
           }
-
+          res.clearCookie('token');
+          res.redirect('/');
       }
     );
     } else {
