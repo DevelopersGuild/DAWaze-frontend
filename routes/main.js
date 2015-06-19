@@ -15,19 +15,10 @@ module.exports = function(app, io) {
 
   function renderMap(req, res) {
     API.getMap({}, function(err, clientErr, _res) {
-
-      if (err) {
-        console.error(err);
-        res.status(500).send(err.message);
-      } else if (clientErr) {
-        res.status(400).send(clientErr.message);
-      } else {
-        res.render('index.html', {
-          title: 'Home :: Daze',
-          markers: _res.markers,
-          isLoggedIn: (req.signedCookies.token ? true : false)
-        });
-      }
+      res.render('index.html', {
+        title: 'Home :: Daze',
+        isLoggedIn: (req.signedCookies.token ? true : false)
+      });
 
     });
   }
@@ -69,6 +60,25 @@ module.exports = function(app, io) {
     });
   }
 
+  function handleAddMarker(req, res) {
+
+    var data = req.body;
+    data.token = req.signedCookies.token;
+    API.createMarker(req.body, function(err, clientErr, _res) {
+
+      if (err) {
+        console.error(err);
+        res.status(500).send(err.message);
+      } else if (clientErr) {
+        res.status(400).send(clientErr.message);
+      } else {
+        io.emit('new marker', _res.marker);
+        res.sendStatus(200);
+      }
+
+    });
+  }
+
   function handleUserLogout(req, res) {
     if (req.signedCookies.token) {
       API.logoutUser({token: req.signedCookies.token},
@@ -76,14 +86,17 @@ module.exports = function(app, io) {
 
           if (err) {
             console.error(err);
+
             //res.status(500).send(err.message);
           } else if (clientErr) {
+
             //res.status(400).send(clientErr.message);
           } else {
-            res.clearCookie('token');
-            res.status(200).send();
+            //res.clearCookie('token');
+            //res.status(200).send();
           }
-
+          res.clearCookie('token');
+          res.redirect('/');
       }
     );
     } else {
@@ -92,23 +105,31 @@ module.exports = function(app, io) {
   }
 
 
-    io.on('connection', function(socket){
-        socket.on('marker', function(obj){
-            console.log('received marker obj: ' + obj);
-        })
+    io.on('connection', function(socket) {
 
-        socket.on('onlineUsers', function(num) {
-            console.log('online users: ' + num);
-        });
+      API.getMap({}, function(err, clientErr, _res) {
 
-        socket.on('disconnect', function(){
-            console.log('user disconnected.');
-        })
-    })
+        socket.emit('initialize', _res.markers);
+
+      });
+
+      socket.on('marker', function(obj) {
+        console.log('received marker obj: ' + obj);
+      });
+
+      socket.on('onlineUsers', function(num) {
+        console.log('online users: ' + num);
+      });
+
+      socket.on('disconnect', function() {
+        console.log('user disconnected.');
+      });
+    });
 
     app.get('/', renderSplash);
     app.get('/home', renderMap);
     app.get('/logout', handleUserLogout);
     app.post('/login', handleUserLogin);
     app.post('/join', handleUserSignup);
+    app.post('/addmarker', handleAddMarker);
 };

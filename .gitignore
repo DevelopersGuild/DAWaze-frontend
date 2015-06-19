@@ -1,3 +1,11 @@
+.DS_Store
+.idea
+data
+
+# Sublime Text stuff
+*.sublime-workspace
+*.sublime-project
+
 # Logs
 logs
 *.log
