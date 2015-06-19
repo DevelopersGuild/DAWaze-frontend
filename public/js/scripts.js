@@ -6,6 +6,9 @@ $(function() {
   var socket = io();
   socket.emit('onlineUsers', 1);
 
+  var MARKER_TYPES = [
+    'wtf', 'hangout', 'cop', 'cool', 'club', 'music', 'study', 'event'
+  ];
   /*
     mapbox-related code
   */
@@ -30,6 +33,20 @@ $(function() {
 
   // zoom the map to that bounding box
   map.fitBounds(bounds);
+
+  var myLayer = L.mapbox.featureLayer().addTo(map);
+
+  myLayer.on('layeradd', function(e) {
+    var marker = e.layer,
+      feature = marker.feature;
+    marker.setIcon(L.divIcon(feature.properties.icon));
+  });
+
+  myLayer.on('click', function(e) {
+    var marker = e.layer,
+      feature = marker.feature;
+    // Open Modal
+  });
 
   /*
     UI-related code
@@ -56,14 +73,42 @@ $(function() {
       // Specify a class name we can refer to in CSS.
       className: 'daze-tag event',
       // Set marker width and height
-      iconSize: [60, 60]
+      iconSize: [60, 60],
+
+
     }),
       draggable: true
   });
-  $('#live-btn').click(function(){
-    marker.addTo(map);
-    socket.emit('marker', 'marker');
-    console.log('add marker');
+
+  $('#live-btn').click(function() {
+
+    var marker = {
+      type: 'Feature',
+      geometry: {
+        type: 'Point',
+        coordinates: [-122.04450, 37.31850]
+      },
+      properties: {
+        id: 'dssd',
+        title: 'lol',
+        description: 'lol2',
+        location: 'lollocation',
+        icon: {
+          iconSize: [50, 50], // size of the icon
+
+          className: 'daze-tag event'
+        }
+      }
+    };
+
+    var geoJsonArr = myLayer.getGeoJSON() || [];
+
+    geoJsonArr.push(marker);
+
+    myLayer.setGeoJSON(geoJsonArr);
+
+    //marker.addTo(map);
+    //socket.emit('marker', 'marker');
   });
 
 
@@ -155,19 +200,48 @@ $(function() {
   $('#login').modal('attach events', '#login-btn', 'show');
   $('#splash').modal('show');
 
+  var MarkersList = [];
+  // Initialize the map for the user
   socket.on('initialize', function(markers) {
     for (var i in markers) {
-      L.marker([markers[i].lat, markers[i].lon], {
-        icon: L.divIcon({
-        // Specify a class name we can refer to in CSS.
-        className: 'daze-tag event',
-        // Set marker width and height
-        iconSize: [60, 60]
-      })
-    }).addTo(map);
+
+      var marker = {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [markers[i].lon, markers[i].lat]
+        },
+        properties: {
+          id: markers[i].id,
+          title: markers[i].title,
+          description: markers[i].description,
+          location: markers[i].location,
+          icon: {
+            iconSize: [50, 50], // size of the icon
+
+            className: 'daze-tag ' + MARKER_TYPES[markers[i].type]
+          }
+        }
+      };
+
+      var geoJsonArr = [];
+
+      if (myLayer.getGeoJSON()) {
+
+        if (Array.isArray(myLayer.getGeoJSON())) {
+          geoJsonArr = myLayer.getGeoJSON();
+        } else {
+          geoJsonArr.push(myLayer.getGeoJSON());
+        }
+      }
+      geoJsonArr.push(marker);
+
+      myLayer.setGeoJSON(geoJsonArr);
 
     }
+
   });
+
 
 });
 
